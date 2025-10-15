@@ -6,7 +6,9 @@ import Home from './pages/home/home.jsx';
 import Contacto from './pages/contacto/contacto.jsx';
 import Catalogo from './pages/catalogo/catalogo.jsx';
 import Carrito from './pages/carrito/carrito.jsx';
+import DetalleProducto from './components/DetalleProducto/DetalleProducto.jsx';
 import { createGlobalStyle } from 'styled-components';
+
 
 const GlobalStyle = createGlobalStyle`
 
@@ -15,10 +17,11 @@ const GlobalStyle = createGlobalStyle`
   }
   html, body {
         margin: 0;
-        padding: 0;
+        padding-top: 30px;
         box-sizing: border-box;
         width: 100%;
         height: 100%;
+
     }
 `;
 function App() {
@@ -29,6 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/catalogo/:id" element={<DetalleProducto />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/carrito" element={<Carrito />} />
         </Routes>

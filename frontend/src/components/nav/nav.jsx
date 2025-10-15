@@ -2,6 +2,7 @@
 import { NavLink } from "react-router-dom";
 import logo from '../../assets/imagenes/logo.svg'
 import * as S from './nav'
+import carritoImg from "../../assets/imagenes/carroCompra.png"
 
 
 function Navbar(){
@@ -14,8 +15,8 @@ function Navbar(){
                   <S.Links to="/" end className={({isActive}) => isActive? 'active':undefined}>Home</S.Links>  
                   <S.Links to="/catalogo" end className={({isActive}) => isActive? 'active':undefined}>Catalogo</S.Links>  
                   <S.Links to="/contacto" className={({isActive}) => isActive? 'active':undefined}>Contacto</S.Links> 
-                  <S.Links to="/carrito" className={({isActive}) => isActive? 'active':undefined}>CARRITO</S.Links>
                 </S.Lista>
+                  <S.Links to="/carrito" className={({isActive}) => isActive? 'active':undefined}><S.CarritoImg src={carritoImg}/></S.Links>
             </S.Nav> 
         </div>
     )
