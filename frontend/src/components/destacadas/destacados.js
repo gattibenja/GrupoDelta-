@@ -28,4 +28,12 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
+
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(3, 1fr); /* Tablet: 2 columnas */
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr); /* Laptop/PC: 3 columnas */
+  }
 `;

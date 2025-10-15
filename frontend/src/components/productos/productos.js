@@ -20,9 +20,13 @@ export const Section = styled.section`
   
 `;
 
-export const Title = styled.h2`
-  margin-bottom: 20px;
-  text-align: center;
+export const Title = styled.h1`
+   font-size: 2rem;
+  color: #A0522D;
+  margin-bottom: 2rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 `;
 
 export const Grid = styled.div`

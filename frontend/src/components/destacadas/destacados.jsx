@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import * as S from './destacados.js'
-import ProductCard from '../productCard/productCard.jsx';
+import ProductCard from '../productCardDestacados/productCardDestacados.jsx';
 function Destacado(){
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch("/data/productos.json")
+        fetch("http://localhost:4000/api/productos")
         .then(res => {
             if (!res.ok) throw new Error("Error cargando productos");
             return res.json()
