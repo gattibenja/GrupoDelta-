@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import carpinteroImg from "../../assets/imagenes/Carpintero.png";
+import { NavLink } from "react-router-dom";
 
 export const Main = styled.main`
     display: flex;
@@ -61,7 +62,7 @@ export const SubTitle = styled.p`
     z-index: 1;
 `;
 
-export const Boton = styled.a`
+export const Boton = styled(NavLink)`
     background-color:#A0522D;
     text-decoration: none;
     color: rgb(255, 255, 255);

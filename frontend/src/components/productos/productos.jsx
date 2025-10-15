@@ -7,7 +7,7 @@ function Productos(){
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch("/data/productos.json")
+        fetch("http://localhost:4000/api/productos")
         .then(res => {
             if (!res.ok) throw new Error("Error cargando productos");
             return res.json()
@@ -25,7 +25,7 @@ function Productos(){
     return(
         <div>
             <S.Destacados >
-                    <S.Title>Catalogo</S.Title>
+                    <S.Title>Catalogo de Productos</S.Title>
                     <S.Grid> 
                         {products.map(p => (
                             <ProductCard key={p.id} product={p} />

@@ -13,8 +13,11 @@ export const Nav = styled.header`
     filter: drop-shadow(15px 15px 15px rgba(0, 0, 0, 0.5));
     font-family: 'Inter', sans-serif;
     font-weight: 200;
-    padding: 0.4rem 1rem;
-    position: sticky; 
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 3rem;
+    padding-right: 4rem;
+    position: fixed; 
     top: 0; 
     z-index: 1000; 
     border-bottom: 3px solid #D4A437;
@@ -32,7 +35,7 @@ export const Links = styled(NavLink)`
     text-decoration: none;
     color:  #333;
     margin: 0 1rem;
-    font-size: 0.6rem;
+    font-size: 0.80rem;
     transition: all 0.15s ease-in-out;
 
     &:hover, &.active{
@@ -44,7 +47,7 @@ export const Links = styled(NavLink)`
 `;
 
 export const Logo = styled.span`
-    height: 2rem;
+    height: 2.5rem;
     width: auto;
     border-radius: 50%;
     background-color: white;
@@ -52,6 +55,12 @@ export const Logo = styled.span`
     display: flex;
     align-items:center ;
     justify-content: center;
+`;
+
+export const CarritoImg = styled.img`
+    height: 2rem;
+    width: auto;
+    display: flex;
 `;
 
 export const LogoImg = styled.img`
