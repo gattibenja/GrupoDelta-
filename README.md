@@ -4,7 +4,7 @@ Una aplicación web completa de comercio electrónico para una tienda de muebles
 
 ## Integrantes
 
-*   *Aquí puedes agregar los nombres de los integrantes del equipo.*
+*   Gatti Benjamin Pablo*
 
 ---
 
