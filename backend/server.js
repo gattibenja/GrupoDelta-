@@ -17,6 +17,12 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(loggerMiddleware);
+app.get('/', (req, res) => {
+    res.json({ 
+        message: "API de Muebleria Jota Hermanos operativa.",
+        endpoints: "/api/productos"
+    });
+});
 app.use("/api/productos", routerPeticiones)
 app.use(notFoundHandler);
 
