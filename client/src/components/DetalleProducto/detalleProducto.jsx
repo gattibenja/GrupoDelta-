@@ -80,7 +80,7 @@ export default function DetalleProducto() {
 
         
     }*/
-   const urlFront = 'http://localhost:4000' + producto.imagen 
+   const urlFront = BASE_URL + producto.imagen 
 
     return (
         <div>
