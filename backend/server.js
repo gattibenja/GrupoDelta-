@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 4000
 
 app.use(express.static(path.join(__dirname, 'public')));
 const routerPeticiones = require('./routers/productos.routes.js')
-const {loggerMiddleware} = require("./middleWares/logger.js")
+const {loggerMiddleware} = require("./middlewares/logger.js")
 const {notFoundHandler} = require("./middlewares/notFoundHandler.js");
 
 
