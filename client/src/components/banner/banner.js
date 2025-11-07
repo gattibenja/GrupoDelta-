@@ -1,6 +1,7 @@
 import styled from "styled-components";
-const  carpinteroImg = "http://localhost:4000/imagenes/Carpintero.png";
 import { NavLink } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
+const  carpinteroImg = `${BASE_URL}/imagenes/Carpintero.png`;
 
 export const Main = styled.main`
     display: flex;
