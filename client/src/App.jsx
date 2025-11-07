@@ -1,12 +1,10 @@
 //import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
-import React from 'react';
-import Navbar from './components/nav/nav.jsx';
 import Home from './pages/home/home.jsx';
 import Contacto from './pages/contacto/contacto.jsx';
 import Catalogo from './pages/catalogo/catalogo.jsx';
 import Carrito from './pages/carrito/carrito.jsx';
-import DetalleProducto from './components/DetalleProducto/DetalleProducto.jsx';
+import DetalleProducto from './components/DetalleProducto/detalleProducto.jsx';
 import { createGlobalStyle } from 'styled-components';
 import CrearProducto from './pages/createProduct/createProduct.jsx';
 

@@ -17,3 +17,7 @@ backend/.env
 # 📦 Archivos de lock (opcional si se regeneran en cada instalación)
  package-lock.json
  yarn.lock
+
+backend/node_modules
+frontend/node_modules
+node_modules
