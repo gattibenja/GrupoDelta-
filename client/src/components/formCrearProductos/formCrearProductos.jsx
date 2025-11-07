@@ -1,6 +1,9 @@
 import { useState} from "react";
 //import { useNavigate } from "react-router-dom";
 import * as S from './FormCrearProducto'
+
+const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
+
 export default function FormCrearProducto() {
     const [formData, setFormData] = useState({
       id: null,
@@ -34,7 +37,7 @@ export default function FormCrearProducto() {
         }
         console.log("Datos a enviar: ", formData)
         try{
-            const response = await fetch("http://localhost:4000/api/productos/", {
+            const response = await fetch(`${BASE_URL}/api/productos/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json',

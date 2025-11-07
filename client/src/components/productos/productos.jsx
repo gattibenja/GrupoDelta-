@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as S from './productos.js'
 import ProductCard from '../productCard/productCard.jsx';
+const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 function Productos(){
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:4000/api/productos")
+        fetch(`${BASE_URL}/api/productos`)
         .then(res => {
             if (!res.ok) throw new Error("Error cargando productos");
             return res.json()

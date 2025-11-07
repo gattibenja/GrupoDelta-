@@ -1,10 +1,11 @@
 //import React, { useState } from "react";
 import * as S from "./productCard";
 import {useNavigate } from "react-router-dom";
-
+const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 export default function ProductCard({ product }) {
   
-  const urlFront = "http://localhost:4000" + product.imagen;
+  
+  const urlFront = BASE_URL + product.imagen;
   const navigate = useNavigate();
   const addProduct = () =>{
       let carrito = JSON.parse(localStorage.getItem("carrito")) || [];

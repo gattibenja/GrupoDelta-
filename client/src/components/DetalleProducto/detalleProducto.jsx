@@ -3,7 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as S from "./detalleProducto.js"
 import Navbar from "../nav/nav.jsx";
-const regresar = 'http://localhost:4000/imagenes/regresar.png';
+
+const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
+const regresar = `${BASE_URL}/imagenes/regresar.png`;
 export default function DetalleProducto() {
     const { id }  = useParams();
     const navigate = useNavigate();
@@ -13,7 +15,7 @@ export default function DetalleProducto() {
 
     
     useEffect(() => {
-        fetch(`http://localhost:4000/api/productos/${id}`)
+        fetch(`${BASE_URL}/api/productos/${id}`)
         .then(res => {
             if (!res.ok) throw new Error("Error cargando producto");
             return res.json();

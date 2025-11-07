@@ -2,9 +2,9 @@ import React from "react";
 import * as S from "./productCardCarrito";
 //import { useParams } from "react-router-dom";
 //import { useState } from "react";
-
+const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 export default function ProductCardCarrito({ product }) {
-     const urlFront = "http://localhost:4000" + product.imagen;
+     const urlFront = BASE_URL + product.imagen;
      
 
     const restar = () =>{
