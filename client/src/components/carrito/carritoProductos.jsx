@@ -6,11 +6,30 @@ export default function CarritoProductos() {
    // const [cantidadProductos, setCantidadProductos] = useState(0);
     
 
+   const getCart = () => {
+        const raw = localStorage.getItem('carrito');
+        if(!raw) return 0;   
+        try{
+            const carrito = JSON.parse(raw);
+            if (!Array.isArray(carrito)) return 0;
+            return JSON.parse(localStorage.getItem("carrito")) || [];
+        }catch(e){
+            console.warn('carrito invalid JSON', e);
+            return 0;
+        }
+    }
+
+   
+
     useEffect(() => {
-        let carrito = JSON.parse(localStorage.getItem("carrito")) || []; 
-        //const total = carrito.reduce((sum, product) => sum + product.quantity, 0)
-        setProductos(carrito);
-        //setCantidadProductos(total);
+        setProductos(getCart());
+    
+            const onStorage = () => setProductos(getCart());
+            window.addEventListener('carritoUpdated', onStorage); 
+    
+            return () => {
+                window.removeEventListener('carritoUpdated', onStorage);
+            }
     }, []);
 
     return(
