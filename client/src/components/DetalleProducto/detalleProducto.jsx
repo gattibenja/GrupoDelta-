@@ -6,6 +6,7 @@ import Navbar from "../nav/nav.jsx";
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const regresar = `${BASE_URL}/imagenes/regresar.png`;
+
 export default function DetalleProducto() {
     const { id }  = useParams();
     const navigate = useNavigate();
@@ -51,7 +52,7 @@ export default function DetalleProducto() {
         let confirmar = confirm("Desea eliminar el producto");
         if(confirmar){
             try{
-            const response = await fetch(`http://localhost:4000/api/productos/${id}`, {
+            const response = await fetch(`${BASE_URL}/api/productos/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type' : 'application/json',

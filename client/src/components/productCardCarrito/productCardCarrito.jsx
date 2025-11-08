@@ -70,6 +70,7 @@ export default function ProductCardCarrito({ product }) {
     };
 
     const eliminar = () =>{
+      if(!confirm("Desea eliminar el producto de su carrito?")) return;
       let carrito = getCart()
       const existingProduct = carrito.find(p => String(p.id) === String(product.id));
       if(existingProduct){
