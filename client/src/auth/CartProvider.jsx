@@ -109,6 +109,7 @@ export const CartProvider = ({ children }) => {
           local[existingIndex].quantity = (local[existingIndex].quantity || 0) + qty;
         } else {
           local.push({
+            product: product, // <-- CORRECCIÓN: Añadir el objeto producto completo
             quantity: qty,
           });
         }

@@ -5,12 +5,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import * as S from "./detalleProducto.js"
 import { AuthContext } from "../../auth/AuthContext.js";
+import { CartContext } from "../../auth/cartContext.js";
 import { useToast } from "../../auth/ToastContext.js";
 
 
 export default function DetalleProducto() {
     const { id }  = useParams();
     const { isAuthenticated} = useContext(AuthContext);
+    const { refreshCartFromDB } = useContext(CartContext);
     const { addToast } = useToast();
     const navigate = useNavigate();
     const [producto, setProduct] = useState(null)
@@ -61,6 +63,7 @@ export default function DetalleProducto() {
                     credentials: "include",
                     body: JSON.stringify({ id: producto._id, quantity: 1 })
                 });
+            await refreshCartFromDB(); // <-- CORRECCIÓN: Refrescar el estado del carrito
             addToast(`${producto.nombre} agregado a tu carrito.`, 'success');
         }catch(err){
             console.error("Error al agregar producto al carrito:", err.message)
