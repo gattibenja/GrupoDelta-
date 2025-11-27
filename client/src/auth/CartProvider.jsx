@@ -1,7 +1,7 @@
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 import {useState, useEffect, useCallback, useContext } from "react";
 import { CartContext } from "./cartContext";
-import { AuthContext } from "./authContext.js";
+import { AuthContext } from "./AuthContext.js";
 import { useToast } from "./ToastContext.js";
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);

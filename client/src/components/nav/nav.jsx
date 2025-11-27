@@ -1,7 +1,7 @@
 import * as S from './nav.js'
 import carritoImg from "../../assets/imagenes/carroCompra.png"
 //import { useState, useEffect } from 'react'
-import { AuthContext } from '../../auth/authContext.js';
+import { AuthContext } from '../../auth/AuthContext.js';
 import { CartContext } from '../../auth/cartContext.js';
 import { useContext } from 'react'; // No necesitamos useState para el hover
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;

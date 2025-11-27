@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { PurchaseContext } from './PurchaseContext.js';
-import { AuthContext } from './authContext.js'; // 1. Importar AuthContext
+import { AuthContext } from './AuthContext.js'; // 1. Importar AuthContext
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
  
