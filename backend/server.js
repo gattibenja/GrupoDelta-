@@ -16,17 +16,16 @@ const cartRouter = require('./routers/cart.router.js')
 const orderRouter = require('./routers/orders.routes.js')
 const {loggerMiddleware} = require("./middlewares/logger.js")
 const {notFoundHandler} = require("./middlewares/notFoundHandler.js");
-const whitelist = [
-    'http://localhost:5173', 
-    process.env.FRONTEND_URL  // La URL de tu frontend en producción (Vercel)
-];
+
+const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
+  ? process.env.CORS_ALLOWED_ORIGINS.split(',')
+  : [];
 
 // 2. Configura las opciones de CORS dinámicamente
 const corsOptions = {
     credentials: true,
     origin: function (origin, callback) {
-        // Permite peticiones sin origen (como Postman o apps móviles) o si el origen está en la whitelist
-        if (!origin || whitelist.indexOf(origin) !== -1) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
             callback(new Error('No permitido por CORS'));
