@@ -16,7 +16,6 @@ const cartRouter = require('./routers/cart.router.js')
 const orderRouter = require('./routers/orders.routes.js')
 const {loggerMiddleware} = require("./middlewares/logger.js")
 const {notFoundHandler} = require("./middlewares/notFoundHandler.js");
-
 const whitelist = [
     'http://localhost:5173', 
     process.env.FRONTEND_URL  // La URL de tu frontend en producción (Vercel)
