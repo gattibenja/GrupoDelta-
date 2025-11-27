@@ -17,19 +17,15 @@ const orderRouter = require('./routers/orders.routes.js')
 const {loggerMiddleware} = require("./middlewares/logger.js")
 const {notFoundHandler} = require("./middlewares/notFoundHandler.js");
 
-// 1. Crea la lista blanca (whitelist) dinámicamente
-const productionOrigins = process.env.CORS_ALLOWED_ORIGINS
+const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
   ? process.env.CORS_ALLOWED_ORIGINS.split(',')
   : [];
-
-// La URL de desarrollo local siempre estará permitida, junto con las de producción.
-const allowedOrigins = ['http://localhost:5173', ...productionOrigins];
 
 // 2. Configura las opciones de CORS dinámicamente
 const corsOptions = {
     credentials: true,
     origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
             callback(new Error('No permitido por CORS'));
