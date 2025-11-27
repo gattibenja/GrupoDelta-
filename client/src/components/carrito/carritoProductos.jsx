@@ -44,7 +44,7 @@ export default function CarritoProductos() {
         }
       };
 
-    const total = cart.reduce((acc, item) => acc + item.product.precio * item.quantity, 0);
+    const total = cart.items?.reduce((acc, item) => acc + item.product.precio * item.quantity, 0) || 0;
 
     return(
         <>
@@ -52,12 +52,12 @@ export default function CarritoProductos() {
           <S.Title>Tu Carrito 🛒</S.Title>
             <S.productsContainer>{
                 loading ? <p>Cargando carrito...</p> :
-                (cart.length > 0) ? 
-                cart.map(item => <ProductCardCarrito key={item.product._id} product={item.product} quantity={item.quantity} />) :
+                (cart.items && cart.items.length > 0) ? 
+                cart.items.map(item => <ProductCardCarrito key={item.product._id} product={item.product} quantity={item.quantity} />) :
                 <p>Tu carrito está vacío</p>
             }
             </S.productsContainer>
-            {cart.length > 0 && (
+            {cart.items && cart.items.length > 0 && (
                 <S.TotalSection>
                     <h3>Total: ${total.toLocaleString()}</h3>
                     <S.ConfirmButton onClick={handleConfirmOrder}>

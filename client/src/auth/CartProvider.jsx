@@ -4,7 +4,7 @@ import { CartContext } from "./cartContext";
 import { AuthContext } from "./AuthContext.js";
 import { useToast } from "./ToastContext.js";
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({ items: [] }); // Iniciar como objeto
   const [loading, setLoading] = useState(true);
   const [isDBCart, setIsDBCart] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
         if (!meRes.ok) {
           setIsDBCart(false);
           const local = JSON.parse(localStorage.getItem("cart")) || [];
-          setCart(local);
+          setCart({ items: local }); // Envolver en objeto
           recalcCartCount(local);
           return;
         }
@@ -46,16 +46,15 @@ export const CartProvider = ({ children }) => {
         });
 
         if (!cartRes.ok) {
-          setCart([]);
+          setCart({ items: [] });
           recalcCartCount([]);
           return;
         }
 
         const data = await cartRes.json();
-
-        const serverCart = data.cart?.items || data.items || data.products || data || [];
-        setCart(serverCart);
-        recalcCartCount(serverCart);
+        const serverCartItems = data.cart?.items || [];
+        setCart({ items: serverCartItems }); // Guardar como objeto
+        recalcCartCount(serverCartItems);
       } catch (err) {
         console.error("Error cargando carrito:", err);
         setCart([]);
@@ -83,9 +82,9 @@ export const CartProvider = ({ children }) => {
         return;
       }
       const data = await res.json();
-      const serverCart = data.cart?.items || data.items || data.products || data || [];
-      setCart(serverCart);
-      recalcCartCount(serverCart);
+      const serverCartItems = data.cart?.items || [];
+      setCart({ items: serverCartItems }); // Guardar como objeto
+      recalcCartCount(serverCartItems);
     } catch (err) {
       console.error("Error refrescando carrito:", err);
     }
@@ -114,7 +113,7 @@ export const CartProvider = ({ children }) => {
           });
         }
         localStorage.setItem("cart", JSON.stringify(local));
-        setCart(local);
+        setCart({ items: local }); // Envolver en objeto
         recalcCartCount(local);
       }
     } catch (err) {
@@ -139,7 +138,7 @@ export const CartProvider = ({ children }) => {
           local[idx].quantity = (local[idx].quantity || 0) - qty;
           if (local[idx].quantity <= 0) local.splice(idx, 1);
           localStorage.setItem("cart", JSON.stringify(local));
-          setCart(local);
+          setCart({ items: local }); // Envolver en objeto
           recalcCartCount(local);
         }
       }
@@ -164,7 +163,7 @@ export const CartProvider = ({ children }) => {
         const local = JSON.parse(localStorage.getItem("cart")) || [];
         const filtered = local.filter((p) => p._id !== productId);
         localStorage.setItem("cart", JSON.stringify(filtered));
-        setCart(filtered);
+        setCart({ items: filtered }); // Envolver en objeto
         recalcCartCount(filtered);
       }
     } catch (err) {
@@ -174,7 +173,7 @@ export const CartProvider = ({ children }) => {
 
   const clearLocalCart = () => {
     localStorage.removeItem("cart");
-    setCart([]);
+    setCart({ items: [] });
     recalcCartCount([]);
     setIsDBCart(false);
   };
@@ -214,7 +213,7 @@ export const CartProvider = ({ children }) => {
 }
 
   const clearCart = () => {
-    setCart([]);
+    setCart({ items: [] });
     recalcCartCount([]);
   };
 
