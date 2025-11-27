@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import * as S from './form.usuario.login'
 import { useContext } from "react";
-import { AuthContext } from "../../auth/authContext.js";
+import { AuthContext } from "../../auth/AuthContext.js";
 import { useToast } from "../../auth/ToastContext.js";
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 

@@ -1,6 +1,6 @@
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 import { useState, useEffect } from "react";
-import { AuthContext } from "./authContext.js";    
+import { AuthContext } from "./AuthContext.js";    
 import { useNavigate } from "react-router-dom";
 import { useToast } from "./ToastContext.js";
 

@@ -4,7 +4,7 @@ const regresar = `${BASE_URL}/imagenes/regresar.png`;
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import * as S from "./detalleProducto.js"
-import { AuthContext } from "../../auth/authContext.js";
+import { AuthContext } from "../../auth/AuthContext.js";
 import { useToast } from "../../auth/ToastContext.js";
 
 
