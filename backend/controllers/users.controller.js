@@ -73,6 +73,7 @@ exports.userLogIn = async (req, res, next) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', 
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', 
+      domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : undefined,
       maxAge: 24 * 60 * 60 * 1000 // 1 día 
     };
 
@@ -100,8 +101,9 @@ exports.userLogIn = async (req, res, next) => {
 exports.logOut = async (req, res, next) => {
     res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "none",
-    secure: true
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : undefined,
   });
 
   res.json({ message: "Logout exitoso" });
