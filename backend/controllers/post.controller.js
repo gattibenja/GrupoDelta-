@@ -88,8 +88,8 @@ exports.createManyProducts = async (req, res, next) => {
             console.log('Producto encontrado')
             const datosActualizados = req.body
             console.log(`Actualizando el producto con Id: ${productoId}`)
-            const productoActualizado = await Producto.findByIdAndUpdate(productoId, datosActualizados, {new: true, runValidators: true})
             if(!productoActualizado){
+                const productoActualizado = await Producto.findOneAndUpdate({id: Number(productoId)}, datosActualizados, {new: true, runValidators: true})
                 const error = new Error(`No se pudo actualizar el usuario con ID: ${productoId} `);
                 error.status(404)
                 return next(error)

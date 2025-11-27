@@ -1,47 +1,70 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import ProductCardCarrito from "../productCardCarrito/productCardCarrito.jsx";
 import * as S from "./carritoProductos"
+import { CartContext } from "../../auth/cartContext.js";
+import { PurchaseContext } from "../../auth/PurchaseContext.js";
+import { useToast } from "../../auth/ToastContext.js";
+
+const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
+
 export default function CarritoProductos() {
-    const [productos, setProductos] = useState([]);
-   // const [cantidadProductos, setCantidadProductos] = useState(0);
-    
+    const { cart, loading, clearCart, deleteCart } = useContext(CartContext);
+    const { addToast } = useToast();
+    const { fetchPurchases } = useContext(PurchaseContext);
+    const navigate = useNavigate();
 
-   const getCart = () => {
-        const raw = localStorage.getItem('carrito');
-        if(!raw) return 0;   
-        try{
-            const carrito = JSON.parse(raw);
-            if (!Array.isArray(carrito)) return 0;
-            return JSON.parse(localStorage.getItem("carrito")) || [];
-        }catch(e){
-            console.warn('carrito invalid JSON', e);
-            return 0;
-        }
-    }
-
-   
-
-    useEffect(() => {
-        setProductos(getCart());
+    const handleConfirmOrder = async () => {
+        if (window.confirm("¿Estás seguro de que quieres confirmar tu pedido?")) {
+          try {
+            // 1. Crear la orden en el backend
+            const orderResponse = await fetch(`${BASE_URL}/api/createOrder`, {
+              method: 'POST',
+              credentials: 'include',
+            });
     
-            const onStorage = () => setProductos(getCart());
-            window.addEventListener('carritoUpdated', onStorage); 
-    
-            return () => {
-                window.removeEventListener('carritoUpdated', onStorage);
+            if (!orderResponse.ok) {
+              throw new Error('No se pudo crear el pedido.');
             }
-    }, []);
+            
+            deleteCart()
+    
+            addToast('¡Pedido confirmado! Tu orden está en proceso.', 'success');
+            
+            // 3. Recargar las compras y limpiar el estado del carrito antes de redirigir
+            await fetchPurchases();
+            clearCart();
+            navigate('/purchases');
+    
+          } catch (error) {
+            addToast(error.message || 'Ocurrió un error al confirmar el pedido.', 'error');
+          }
+        } else {
+          addToast('Confirmación de pedido cancelada.', 'info');
+        }
+      };
+
+    const total = cart.reduce((acc, item) => acc + item.product.precio * item.quantity, 0);
 
     return(
         <>
         <S.Container>
           <S.Title>Tu Carrito 🛒</S.Title>
             <S.productsContainer>{
-            (productos.length > 0) ? 
-            productos.map(p => <ProductCardCarrito key={p.id} product={p} />):
-            <p>Tu carrito esta vacio</p>
+                loading ? <p>Cargando carrito...</p> :
+                (cart.length > 0) ? 
+                cart.map(item => <ProductCardCarrito key={item.product._id} product={item.product} quantity={item.quantity} />) :
+                <p>Tu carrito está vacío</p>
             }
             </S.productsContainer>
+            {cart.length > 0 && (
+                <S.TotalSection>
+                    <h3>Total: ${total.toLocaleString()}</h3>
+                    <S.ConfirmButton onClick={handleConfirmOrder}>
+                        Confirmar Pedido
+                    </S.ConfirmButton>
+                </S.TotalSection>
+            )}
           </S.Container>
         </>
     )

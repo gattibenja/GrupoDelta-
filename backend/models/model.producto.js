@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const productoSchema = new mongoose.Schema({
     id:{
         type:Number,
-        required:true
+        required:true,
+        index: true
     },
     nombre: {
         type:String,
@@ -48,6 +49,6 @@ const productoSchema = new mongoose.Schema({
 
 }, {timestamps:true})
 
-const Producto = mongoose.model('Producto', productoSchema);
+const Producto = mongoose.model("Producto", productoSchema);
 
 module.exports = Producto;

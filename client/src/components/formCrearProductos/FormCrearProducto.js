@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     display:flex;
     flex-direction: column;
-    width:50%;
+    width:25%;
     height: auto;
     gap: 20px;
     margin: 80px auto; 
@@ -16,9 +16,9 @@ export const Container = styled.div`
 `;
 
 export const Titulo = styled.h1`
-      padding-top: 65px;
+     
       text-align: center;
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: #A0522D;
       font-family: Georgia, 'Times New Roman', serif;
       text-transform: uppercase;
@@ -30,8 +30,8 @@ export const Titulo = styled.h1`
 export const Info = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: left;
 `;
 
 export const Descripcion = styled.p`
@@ -49,7 +49,7 @@ export const Form = styled.form`
 export const Label = styled.label`
     font-weight: bold;
     color: #3e2d1a;
-    text-align: center;
+    text-align: left;
 `;
 
 export const Input = styled.input`

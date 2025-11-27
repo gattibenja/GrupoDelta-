@@ -6,7 +6,7 @@ const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
 export default function FormCrearProducto() {
     const [formData, setFormData] = useState({
-      id: null,
+      id: "",
       nombre: "",
       descripcion: "",
       medidas: "",
@@ -14,7 +14,7 @@ export default function FormCrearProducto() {
       acabado: "",
       almacenamiento: "",
       cables: "",
-      precio: null,
+      precio: "",
       imagen: ""
     });
     //const navigate = useNavigate();
@@ -42,6 +42,7 @@ export default function FormCrearProducto() {
                 headers: {
                     'Content-Type' : 'application/json',
                 },
+                credentials: "include",
                 body: JSON.stringify(formData)
             });
             if(!response.ok){
@@ -82,9 +83,8 @@ export default function FormCrearProducto() {
    
     return(
         <>
-         <S.Titulo>Crea un nuevo producto</S.Titulo>
         <S.Container>
-           
+           <S.Titulo>Crea un nuevo producto</S.Titulo>
             <S.Form onSubmit={handleSubmit}>
                 <S.Label>Id:</S.Label>
                 <S.Input type="number" name="id" value={formData.id} required onChange={handleChange}/>
@@ -96,12 +96,6 @@ export default function FormCrearProducto() {
                 <S.Input type="text" name="medidas" value={formData.medidas} required onChange={handleChange}/>
                 <S.Label>Materiales:</S.Label>
                 <S.Input type="text" name="materiales" value={formData.materiales} required onChange={handleChange}/>
-                <S.Label>Acabado:</S.Label>
-                <S.Input type="text" name="acabado" value={formData.acabado} required onChange={handleChange}/>
-                <S.Label>Almacenamiento:</S.Label>
-                <S.Input type="text" name="almacenamiento" value={formData.almacenamiento} required onChange={handleChange}/>
-                <S.Label>Cables:</S.Label>
-                <S.Input type="text" name="cables" value={formData.cables} required onChange={handleChange}/>
                 <S.Label>Precio:</S.Label>
                 <S.Input type="number" name="precio" value={formData.precio} required onChange={handleChange}/>
                 <S.Label>Url imagen:</S.Label>

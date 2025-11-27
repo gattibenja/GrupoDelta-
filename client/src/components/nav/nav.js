@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -36,13 +36,17 @@ export const Links = styled(NavLink)`
     color:  #333;
     margin: 0 1rem;
     font-size: 0.80rem;
-    transition: all 0.15s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    display: flex; /* Clave: para centrar el contenido verticalmente */
+    align-items: center; /* Clave: para centrar el contenido verticalmente */
+    padding-bottom: 4px; /* Pequeño espacio para que la línea no esté pegada */
+    border-bottom: 1px solid transparent; /* Borde invisible por defecto */
 
     &:hover, &.active{
      text-decoration: none;
      transform: scale(1.05);
      color: #D4A437;
-     border-bottom: 1px solid #C47A6D;
+     border-bottom-color: #D4A437; /* Solo cambiamos el color del borde */
      } 
 `;
 
@@ -89,4 +93,67 @@ export const productoCount = styled.span`
 export const LogoImg = styled.img`
     height: 100%;
     width: 100%;
+`;
+
+// Contenedor para el menú de usuario. Es relativo para posicionar el menú desplegable.
+export const UserMenuContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px solid transparent;
+
+  /* Al pasar el mouse sobre este contenedor, mostramos el menú (DropdownMenu) */
+  &:hover > div {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  
+`;
+
+// El botón que muestra "Hola, [Usuario]"
+export const UserNameButton = styled.div`
+  background-color: transparent;
+  color: #333;
+  padding: 8px 12px;
+  font-size: 0.80rem;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+`;
+
+// El menú desplegable en sí.
+export const DropdownMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+  border-radius: 5px;
+  right: -50px; /* Un valor negativo lo mueve más a la derecha */
+  top: 40px; 
+  /* Oculto por defecto y con una transición suave */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px); /* Empieza un poco abajo para un efecto de subida */
+  transition: all 0.2s ease-in-out;
+`;
+
+// Cada opción dentro del menú desplegable.
+export const DropdownItem = styled(Link)`
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.80rem;
+
+  &:hover {background-color: #f1f1f1;}
 `;

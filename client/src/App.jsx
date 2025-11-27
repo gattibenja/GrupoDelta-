@@ -1,4 +1,4 @@
-//import { useState } from 'react'
+
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home/home.jsx';
 import Contacto from './pages/contacto/contacto.jsx';
@@ -7,9 +7,9 @@ import Carrito from './pages/carrito/carrito.jsx';
 import DetalleProducto from './components/DetalleProducto/detalleProducto.jsx';
 import { createGlobalStyle } from 'styled-components';
 import CrearProducto from './pages/createProduct/createProduct.jsx';
-
-
-
+import User from './pages/user/user.jsx'; 
+import Navbar from './components/nav/nav.jsx';
+import Purchases from './pages/Purchases/purchases.jsx';
 const GlobalStyle = createGlobalStyle`
 
 *, *::before, *::after {
@@ -24,18 +24,22 @@ const GlobalStyle = createGlobalStyle`
 
     }
 `;
-function App() {
 
+
+function App() {
   return (
     <>
-       <GlobalStyle />
-        <Routes>
+          <GlobalStyle />
+          <Navbar />
+          <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/user/login" element={<User />} />
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/catalogo/:id" element={<DetalleProducto />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/admin/crear-producto" element={<CrearProducto />} />
+          <Route path="/purchases" element={<Purchases />} />
         </Routes>
     </>
   )
