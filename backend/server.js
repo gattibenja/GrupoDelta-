@@ -24,6 +24,8 @@ const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
 // 2. Configura las opciones de CORS dinámicamente
 const corsOptions = {
     credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Métodos permitidos
+    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization", // Headers permitidos
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
