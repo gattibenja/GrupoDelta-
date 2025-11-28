@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as S from './destacados.js'
-import ProductCard from "../productCardDestacados/productCardDestacados.jsx";
+import ProductCard from "../productCardDestacados/ProductCardDestacados.jsx";
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 function Destacado(){
     const [products, setProducts] = useState([]);
