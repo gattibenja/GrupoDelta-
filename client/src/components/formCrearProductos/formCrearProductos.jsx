@@ -37,12 +37,12 @@ export default function FormCrearProducto() {
         }
         console.log("Datos a enviar: ", formData)
         try{
-            const response = await fetch(`${BASE_URL}/api/productos/`, {
+            const response = await fetch(`${BASE_URL}/api/productos`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type' : 'application/json',
+                    'Content-Type' : 'application/json'
                 },
-                credentials: "include",
+                credentials: "include", // ESTA LÍNEA ES LA CLAVE
                 body: JSON.stringify(formData)
             });
             if(!response.ok){
