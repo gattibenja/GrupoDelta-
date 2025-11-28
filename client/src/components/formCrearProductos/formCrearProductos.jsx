@@ -48,7 +48,6 @@ export default function FormCrearProducto() {
             if(!response.ok){
                 throw new Error('La creacion del producto fallo.')
             }
-            //navigate(`http://localhost:4000/api/productos/${formData.id}`, {replace: true})
             setFormData(
                 {
                  id: "",
