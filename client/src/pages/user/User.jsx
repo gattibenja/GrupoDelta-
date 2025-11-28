@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Footer from '../../components/footer/Footer.jsx';
 import { createGlobalStyle } from 'styled-components';
 import FormCrearUsuarios from '../../components/formCrearUsuario/FormCrearUsuario.jsx';
-import FormLoginUsuario from '../../components/formUsuarioLogin/form.usuario.login.jsx';
+import FormLoginUsuario from '../../components/formUsuarioLogin/Form.usuario.login.jsx';
 import * as S from './user.js'
 
 const GlobalStyle = createGlobalStyle`
