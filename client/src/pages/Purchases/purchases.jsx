@@ -1,6 +1,6 @@
 //import React, { useState } from "react";
 //import { NavLink } from "react-router-dom";
-import Navbar from '../../components/nav/nav.jsx';
+import Navbar from '../../components/nav/Nav.jsx';
 import PurchasesComp from '../../components/purchases/Purchases.jsx';
 import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`

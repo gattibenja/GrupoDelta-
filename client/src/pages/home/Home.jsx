@@ -1,6 +1,6 @@
 //import React, { useState } from "react";
 //import { NavLink } from "react-router-dom";
-import Navbar from '../../components/nav/nav.jsx';
+import Navbar from '../../components/nav/Nav.jsx';
 import Banner from '../../components/banner/Banner.jsx';
 import { createGlobalStyle } from 'styled-components';
 import Footer from '../../components/footer/Footer.jsx';
