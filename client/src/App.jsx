@@ -1,7 +1,7 @@
 
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home/home.jsx';
-import Contacto from './pages/contacto/Contacto.jsx';
+import Contacto from './pages/Contacto/Contacto.jsx';
 import Catalogo from './pages/catalogo/Catalogo.jsx';
 import Carrito from './pages/carrito/Carrito.jsx';
 import DetalleProducto from './components/DetalleProducto/detalleProducto.jsx';
@@ -36,7 +36,7 @@ function App() {
           <Route path="/user/login" element={<User />} />
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/catalogo/:id" element={<DetalleProducto />} />
-          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/contacto" element={<Contacto />} /> 
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/admin/crear-producto" element={<CrearProducto />} />
           <Route path="/purchases" element={<Purchases />} />
