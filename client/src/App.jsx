@@ -4,7 +4,7 @@ import Home from './pages/home/Home.jsx';
 import Contacto from './pages/contacto/contacto.jsx';
 import Catalogo from './pages/catalogo/Catalogo.jsx';
 import Carrito from './pages/carrito/Carrito.jsx';
-import DetalleProducto from './components/DetalleProducto/detalleProducto.jsx';
+import DetalleProducto from './components/DetalleProducto/DetalleProducto.jsx';
 import { createGlobalStyle } from 'styled-components';
 import CrearProducto from './pages/createProduct/CreateProduct.jsx';
 import User from './pages/user/user.jsx'; 
