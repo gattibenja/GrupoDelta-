@@ -5,14 +5,22 @@ import styled from "styled-components";
 export const Container = styled.div`
     display:flex;
     flex-direction: column;
-    width:25%;
+    width: 30%;
+    max-width: 500px;
     height: auto;
     gap: 20px;
     margin: 80px auto; 
     background: #fffdf9;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     border-radius: 15px;
-    padding-top: 20px
+    padding-top: 20px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        width: 90%;
+        margin: 40px auto;
+        gap: 15px;
+    }
 `;
 
 export const Titulo = styled.h1`
@@ -24,7 +32,9 @@ export const Titulo = styled.h1`
       text-transform: uppercase;
       letter-spacing: 0.05em;
 
-      
+      @media (max-width: 768px) {
+        font-size: 1.3rem;
+      }
 `;
 
 export const Info = styled.div`
@@ -42,8 +52,11 @@ export const Form = styled.form`
     display:flex;
     flex-direction: column;
     padding: 0 20px 20px 20px;
-    gap: 30px;
-    
+    gap: 25px;
+
+    @media (max-width: 768px) {
+        gap: 20px;
+    }
     `;
 
 export const Label = styled.label`
@@ -53,19 +66,23 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  width: 100%;
   padding: 10px;
   border: 1px solid #c4a77d;
   border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
+  box-sizing: border-box;
 `;
 
 export const TextArea = styled.textarea`
-     padding: 10px;
+  width: 100%;
+  padding: 10px;
   border: 1px solid #c4a77d;
   border-radius: 8px;
   font-size: 1rem;
-  font-family: inherit;   
+  font-family: inherit;
+  box-sizing: border-box;
 `;
 
 export const Boton = styled.button`
@@ -83,4 +100,3 @@ export const Boton = styled.button`
   }
 
 `;
-

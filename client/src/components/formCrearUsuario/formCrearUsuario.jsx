@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import * as S from './formCrearUsuario'
+import * as S from './formCrearUsuario.js'
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 

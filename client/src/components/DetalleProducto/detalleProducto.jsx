@@ -5,15 +5,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import * as S from "./detalleProducto.js"
 import { AuthContext } from "../../auth/AuthContext.js";
-import { CartContext } from "../../auth/cartContext.js";
-import { useToast } from "../../auth/ToastContext.js";
+import { CartContext } from "../../auth/CartContext.js";
+//import { useToast } from "../../auth/ToastContext.js";
 
 
 export default function DetalleProducto() {
     const { id }  = useParams();
     const { isAuthenticated} = useContext(AuthContext);
-    const { refreshCartFromDB } = useContext(CartContext);
-    const { addToast } = useToast();
+    const { addProduct } = useContext(CartContext);
+    //const { addToast } = useToast();
     const navigate = useNavigate();
     const [producto, setProduct] = useState(null)
     const [error, setError] = useState("")
@@ -32,46 +32,7 @@ export default function DetalleProducto() {
         .catch(err => setError(err.message))
         .finally(() => setLoading(false))
     }, [id]);
-    
-   const addProductLocal = () =>{
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      const existingProduct = carrito.find(p => String(p.id) === String(producto.id));
-      if(existingProduct){
-        existingProduct.quantity += 1;
-      }else{
-        carrito.push({...producto, quantity: 1});
-      }
-
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      window.dispatchEvent(new Event('cartUpdated')); // notifica a Navbar en la misma pestaña
-      console.log("Product Succesfully saved");
-      addToast(`${producto.nombre} agregado al carrito.`, 'success');
-    };
-
-    const addProductDB = async () =>{
-        if (!producto || !producto._id) {
-            console.error("ID de producto no disponible.");
-            return;
-        }
-        try{
-            console.log("ID que envío al backend:", producto._id);
-            await fetch(`${BASE_URL}/api/cart`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({ id: producto._id, quantity: 1 })
-                });
-            await refreshCartFromDB(); // <-- CORRECCIÓN: Refrescar el estado del carrito
-            addToast(`${producto.nombre} agregado a tu carrito.`, 'success');
-        }catch(err){
-            console.error("Error al agregar producto al carrito:", err.message)
-            addToast('Error al agregar el producto.', 'error');
-        } 
-    };
-
-    
+     
 
     const eliminar = async (e) =>{
         e.preventDefault()
@@ -134,7 +95,7 @@ export default function DetalleProducto() {
                     </S.Lista>
                     <S.PrecioCarrito>
                         <S.Precio>${(producto.precio) ? producto.precio:"N/A"}</S.Precio>
-                        <S.BotonAgregar onClick={isAuthenticated ? addProductDB: addProductLocal}>Agregar al Carrito</S.BotonAgregar>
+                        <S.BotonAgregar onClick={() => addProduct(producto)}>Agregar al Carrito</S.BotonAgregar>
                         {isAuthenticated && (
                             <S.BotonAgregar onClick={eliminar}>Eliminar producto</S.BotonAgregar>
                         )}

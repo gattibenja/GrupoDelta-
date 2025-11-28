@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as S from './productos.js'
-import ProductCard from '../productCard/productCard.jsx';
+import ProductCard from '../productCard/ProductCard.jsx';
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 function Productos(){
     const [products, setProducts] = useState([]);

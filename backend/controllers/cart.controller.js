@@ -38,7 +38,6 @@ exports.getCart = async (req, res) => {
         return res.json({ cart: { items: [] }})
     }
 
-    // Filtramos los items cuyo producto es null (porque fue eliminado de la DB)
     const validItems = cart.items.filter(item => item.product !== null);
 
     if (validItems.length !== cart.items.length) {
@@ -65,7 +64,6 @@ exports.deleteProductCart = async (req, res, next) => {
         cart.items = cart.items.filter(item => item.product.toString() !== productId.toString())
         await cart.save()
 
-        // Volvemos a poblar el carrito antes de enviarlo para asegurar que el frontend reciba los datos completos.
         const populatedCart = await Cart.findById(cart._id).populate('items.product');
         res.status(200).json({ message: 'Producto eliminado del carrito', cart: populatedCart });
     }catch(err){

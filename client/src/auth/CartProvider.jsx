@@ -1,8 +1,9 @@
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 import {useState, useEffect, useCallback, useContext } from "react";
-import { CartContext } from "./cartContext";
+import { CartContext } from "./CartContext.js";
 import { AuthContext } from "./AuthContext.js";
 import { useToast } from "./ToastContext.js";
+import { Navigate, useNavigate } from "react-router-dom";
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState({ items: [] }); // Iniciar como objeto
   const [loading, setLoading] = useState(true);
@@ -10,7 +11,7 @@ export const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const { isAuthenticated } = useContext(AuthContext);
   const { addToast } = useToast();
-
+  const navigate = useNavigate()
   const recalcCartCount = useCallback((cartItems) => {
     const count = (cartItems || []).reduce((acc, item) => acc + (item.quantity || 0), 0);
     setCartCount(count);
@@ -91,7 +92,12 @@ export const CartProvider = ({ children }) => {
   }, [recalcCartCount]);
 
   const addProduct = async (product, qty = 1) => {
-    try {
+    if(!isAuthenticated){
+      navigate('/user/logIn', false)
+      return addToast('Debe iniciar sesion para agregar productos a su carrito')
+    } 
+    
+      try {
       if (isDBCart) {
         // En BD: POST a /api/cart (según tu nota)
         await fetch(`${BASE_URL}/api/cart`, {

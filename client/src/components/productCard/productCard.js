@@ -12,7 +12,7 @@ export const Card = styled.div`
   border: 1px solid #D4A437;
   backdrop-filter: blur(6px);
   padding: 10px
-
+  
  }
 `;
 
@@ -34,7 +34,7 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px
+  gap: 40px
   
 `;
 

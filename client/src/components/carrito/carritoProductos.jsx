@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import ProductCardCarrito from "../productCardCarrito/productCardCarrito.jsx";
-import * as S from "./carritoProductos"
-import { CartContext } from "../../auth/cartContext.js";
+import ProductCardCarrito from "../productCardCarrito/ProductCardCarrito.jsx";
+import * as S from "./carritoProductos.js"
+import { CartContext } from "../../auth/CartContext.js";
 import { PurchaseContext } from "../../auth/PurchaseContext.js";
 import { useToast } from "../../auth/ToastContext.js";
 

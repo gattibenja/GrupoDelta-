@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import * as S from "./productCardCarrito";
-import { CartContext } from "../../auth/cartContext.js";
+import * as S from "./productCardCarrito.js";
+import { CartContext } from "../../auth/CartContext.js";
 
 export default function ProductCardCarrito({ product, quantity }) {
       const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;

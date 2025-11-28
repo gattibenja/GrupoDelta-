@@ -1,8 +1,8 @@
 //import React, { useState } from "react";
 //import { NavLink } from "react-router-dom";
-import Navbar from '../../components/nav/nav.jsx';
-import CarritoProductos from '../../components/carrito/carritoProductos.jsx';             
-import Footer from '../../components/footer/footer.jsx'; 
+import Navbar from '../../components/nav/Nav.jsx';
+import CarritoProductos from '../../components/carrito/CarritoProductos.jsx';             
+import Footer from '../../components/footer/Footer.jsx'; 
 import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     

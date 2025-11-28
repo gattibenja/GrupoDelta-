@@ -9,6 +9,12 @@ export const Container = styled.div`
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   font-family: 'Inter', sans-serif;
+
+  @media (max-width: 992px) {
+      width: 90%;
+      margin: 80px auto;
+      padding: 20px;
+    }
 `;
 
 export const Title = styled.h1`
@@ -17,6 +23,11 @@ export const Title = styled.h1`
   color: #A0522D;
   font-family: Georgia, 'Times New Roman', serif;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
 `;
 
 export const PurchaseList = styled.ul`
@@ -41,6 +52,10 @@ export const PurchaseCard = styled.li`
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   }
+
+  @media (max-width: 768px) {
+    padding: 15px 20px;
+  }
 `;
 
 export const CardHeader = styled.div`
@@ -63,6 +78,12 @@ export const CardHeader = styled.div`
     font-size: 0.9rem;
     color: #666;
   }
+
+  @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 `;
 
 export const StatusBadge = styled.span`

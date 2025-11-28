@@ -2,7 +2,7 @@ const User = require("../models/model.users");
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const cookieParser = require('cookie-parser'); // 1. Importar cookie-parser
+const cookieParser = require('cookie-parser'); 
 
 exports.userSignUp = async (req, res, next) => {
     const {username, email, password} = req.body

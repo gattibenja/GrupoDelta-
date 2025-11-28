@@ -9,8 +9,8 @@ export const Nav = styled.header`
     justify-content: space-between;
     width: 100%;
     height: auto;
-    background-color: #F5E6D3;
-    filter: drop-shadow(15px 15px 15px rgba(0, 0, 0, 0.5));
+    background-color: #A0522D	;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
     font-family: 'Inter', sans-serif;
     font-weight: 200;
     padding-top: 0.4rem;
@@ -20,7 +20,18 @@ export const Nav = styled.header`
     position: fixed; 
     top: 0; 
     z-index: 1000; 
-    border-bottom: 3px solid #D4A437;
+    
+    @media (max-width: 992px) {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    
+`;
+
+export const ActionsContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 15px;
 `;
 
 export const Lista = styled.ul`
@@ -29,11 +40,25 @@ export const Lista = styled.ul`
     gap: 15px;
     text-decoration: none;
     list-style-type: none;
+    transition: all 0.3s ease-in-out;
+
+    @media (max-width: 992px) {
+        display: ${props => props.open ? 'flex' : 'none'};
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Justo debajo del nav */
+        left: 0;
+        width: 100%;
+        background-color: #A0522D;
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
 `;
 
 export const Links = styled(NavLink)`
     text-decoration: none;
-    color:  #333;
+    color:  #ffffffff;
     margin: 0 1rem;
     font-size: 0.80rem;
     transition: all 0.2s ease-in-out;
@@ -41,12 +66,17 @@ export const Links = styled(NavLink)`
     align-items: center; /* Clave: para centrar el contenido verticalmente */
     padding-bottom: 4px; /* Pequeño espacio para que la línea no esté pegada */
     border-bottom: 1px solid transparent; /* Borde invisible por defecto */
+    font-family: Playfair Display;
 
     &:hover, &.active{
      text-decoration: none;
      transform: scale(1.05);
      color: #D4A437;
      border-bottom-color: #D4A437; /* Solo cambiamos el color del borde */
+     } 
+
+     @media (max-width: 992px) {
+        padding: 0.8rem 0;
      } 
 `;
 
@@ -79,8 +109,8 @@ export const productoCount = styled.span`
   height: 20px;
   padding: 0 6px;
   border-radius: 10px;
-  background: #D4A437;
-  color: #fff;
+  background: #ffffffff;
+  color: #000000ff;
   font-size: 12px;
   font-weight: 700;
   display: flex;
@@ -114,7 +144,7 @@ export const UserMenuContainer = styled.div`
 // El botón que muestra "Hola, [Usuario]"
 export const UserNameButton = styled.div`
   background-color: transparent;
-  color: #333;
+  color: #ffffffff;
   padding: 8px 12px;
   font-size: 0.80rem;
   border: none;
@@ -140,6 +170,45 @@ export const DropdownMenu = styled.div`
   visibility: hidden;
   transform: translateY(10px); /* Empieza un poco abajo para un efecto de subida */
   transition: all 0.2s ease-in-out;
+`;
+
+export const DropdownUserName = styled.p`
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.80rem;
+
+  &:hover {background-color: #f1f1f1;}
+`;
+
+export const HamburgerButton = styled.button`
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+
+    div {
+        width: 2rem;
+        height: 0.25rem;
+        background: #ffffffff;
+        border-radius: 10px;
+        transition: all 0.3s linear;
+    }
+
+    @media (max-width: 992px) {
+        display: flex;
+    }
 `;
 
 // Cada opción dentro del menú desplegable.

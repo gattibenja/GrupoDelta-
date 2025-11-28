@@ -28,8 +28,16 @@ export const Card = styled.section`
     box-shadow: 0 4px 24px rgba(160, 82, 45, 0.10);
     padding: 2.5rem 0.5rem;
     margin: 2.5rem auto;
-    max-width: 850px;
-    max-height: auto
+    width: 70%;
+    height: auto;
+    position: relative; /* Necesario para posicionar el botón de regreso */
+
+    @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding-top: 5rem; /* Añadimos padding superior para dar espacio al botón */
+  }
 
 `;
 
@@ -45,6 +53,11 @@ export const ImagenContainer = styled.div`
     padding: 1.5rem;
     min-width: 260px;
     max-width: 340px;
+
+    @media (max-width: 768px) {
+    padding: 0.5rem;
+
+  }
 `;
 
 export const Imagen = styled.img`
@@ -53,6 +66,10 @@ export const Imagen = styled.img`
     border-radius: 0.7rem;
     object-fit: contain;
     box-shadow: 0 2px 8px rgba(196, 122, 109, 0.10);
+    
+     @media (max-width: 768px) {
+    padding: 0.5rem;
+
 `;
 
 export const Detalles = styled.div`
@@ -63,6 +80,12 @@ export const Detalles = styled.div`
     gap: 1.2rem;
     font-family: 'Inter', sans-serif;
     color: #A0522D; /* Siena Tostado */
+
+    @media (max-width: 768px) {
+    flex-direction: column;
+    padding-left: 20px
+    
+  }
 `;
 
 export const Titulo = styled.h1`
@@ -130,24 +153,40 @@ export const Precio = styled.span`
 `;
 
 export const BtnRegresarContainer = styled.div`
-    width: 4.3rem;
-    height: auto;
-    margin-right: 35px;
+    /* Estilos para escritorio: el botón está dentro de la card, a la izquierda */
+    align-self: flex-start; /* Asegura que se alinee a la izquierda del contenedor flex */
+    margin-left: 1rem;
+    margin-bottom: -4rem; /* Truco para que no ocupe espacio vertical y la imagen se alinee bien */
+    position: relative;
+    z-index: 10;
 
+    @media (max-width: 768px) {
+        /* En móvil, lo sacamos del flujo de la card y lo ponemos arriba */
+        width: 90%; /* Ocupa el mismo ancho que la card */
+        margin: 0 auto 1rem auto; /* Lo centramos y le damos margen inferior */
+        align-self: center; /* Se centra en el contenedor de la página */
+    }
 `;
 export const BtnRegresar = styled(NavLink)`
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     border: none;
-    border-radius: 0.7rem;
-    padding: 0.7rem 1.5rem;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    width: 100%;
-    height: 100%;
-
+    background: none;
+    padding: 0;
+    text-decoration: none;
+    color: #A0522D;
+    font-weight: 600;
+    font-size: 0.9rem;
 `;
 
 export const ImagenBtnRegresar = styled.img`
-    width: 100%;
-    height: auto;
-`;
+    width: 32px;
+    height: 32px;
+    transition: transform 0.2s ease;
 
+    &:hover {
+        transform: translateX(-4px);
+    }
+`;

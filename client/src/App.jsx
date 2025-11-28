@@ -1,14 +1,14 @@
 
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home/home.jsx';
-import Contacto from './pages/contacto/contacto.jsx';
-import Catalogo from './pages/catalogo/catalogo.jsx';
-import Carrito from './pages/carrito/carrito.jsx';
+import Contacto from './pages/contacto/Contacto.jsx';
+import Catalogo from './pages/catalogo/Catalogo.jsx';
+import Carrito from './pages/carrito/Carrito.jsx';
 import DetalleProducto from './components/DetalleProducto/detalleProducto.jsx';
 import { createGlobalStyle } from 'styled-components';
-import CrearProducto from './pages/createProduct/createProduct.jsx';
+import CrearProducto from './pages/createProduct/CreateProduct.jsx';
 import User from './pages/user/user.jsx'; 
-import Navbar from './components/nav/nav.jsx';
+import Navbar from './components/nav/Nav.jsx';
 import Purchases from './pages/Purchases/purchases.jsx';
 const GlobalStyle = createGlobalStyle`
 

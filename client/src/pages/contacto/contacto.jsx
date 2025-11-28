@@ -1,7 +1,6 @@
 //import React, { useState } from "react";
 //import { NavLink } from "react-router-dom";
-import Navbar from '../../components/nav/nav.jsx';
-import Footer from '../../components/footer/footer.jsx';
+import Navbar from '../../components/nav/Nav.jsx';
 import FormContacto from '../../components/Formcontacto/FormContacto.jsx';
 import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`

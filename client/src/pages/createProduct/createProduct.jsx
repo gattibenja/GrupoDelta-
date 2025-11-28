@@ -1,6 +1,6 @@
-import Navbar from '../../components/nav/nav.jsx';
-import Footer from '../../components/footer/footer.jsx';
-import FormCrearProducto from '../../components/formCrearProductos/formCrearProductos.jsx';
+import Navbar from '../../components/nav/Nav.jsx';
+import Footer from '../../components/footer/Footer.jsx';
+import FormCrearProducto from '../../components/formCrearProductos/FormCrearProductos.jsx';
 import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     

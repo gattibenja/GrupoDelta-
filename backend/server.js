@@ -19,17 +19,12 @@ const {notFoundHandler} = require("./middlewares/notFoundHandler.js");
 
 const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
   
-
-// 2. Configura las opciones de CORS dinámicamente
 const corsOptions = {
     credentials: true,
     origin: allowedOrigins
 };
 
-// 3. Usa las opciones de CORS en tu aplicación
 app.use(cors(corsOptions));
-
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());

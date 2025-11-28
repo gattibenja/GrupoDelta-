@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import * as S from './form.usuario.login'
+import * as S from './form.usuario.login.js'
 import { useContext } from "react";
 import { AuthContext } from "../../auth/AuthContext.js";
 import { useToast } from "../../auth/ToastContext.js";
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
+import { useNavigate } from "react-router-dom";
 
 export default function FormLoginUsuario() {
     const [error, setError] = useState("");
     const [exito, setExito] = useState(false);
     const {login} = useContext(AuthContext) 
     const { addToast } = useToast();
-   
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: {
@@ -35,6 +36,7 @@ export default function FormLoginUsuario() {
                 await login(values); 
                 resetForm();
                 setExito(true);
+                navigate('/')
 
             } catch (err) {
                 addToast(err.message || 'Error al iniciar sesión: ', err.message);

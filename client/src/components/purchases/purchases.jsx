@@ -1,5 +1,5 @@
 import React, {useContext } from "react";
-import { PurchaseContext } from "../../auth/PurchaseContext";
+import { PurchaseContext } from "../../auth/PurchaseContext.js";
 import * as S from './purchases.js';
 
 export default function PurchasesComp() {

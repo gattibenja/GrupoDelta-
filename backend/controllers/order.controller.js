@@ -17,16 +17,15 @@ exports.createOrder = async (req, res, next) => {
         if(!products){ 
           return res.json([]);
       }
-        // Mapeamos los items del carrito para asegurarnos de que solo guardamos el ID del producto.
         const orderItems = products.map(item => ({
-          product: item.product._id, // Guardamos solo el ObjectId del producto
+          product: item.product._id, 
           quantity: item.quantity
         }));
 
         const newOrder = new Order(
       {
         user: userId,
-        items: orderItems // Usamos los items mapeados
+        items: orderItems 
       })
         const savedOrder = await newOrder.save()
         res.status(200).json({"Pedido creado con exito: ": savedOrder})
@@ -40,13 +39,11 @@ exports.createOrder = async (req, res, next) => {
 exports.getOrders = async (req, res, next) => {
     try{
       const userId = req.user.id;
-      // .sort({ createdAt: -1 }) ordena los pedidos del más reciente al más antiguo
       const purchases = await Order.find({ user: userId }).sort({ createdAt: -1 }).populate({
         path: 'items.product',
         select: 'nombre precio'
       });
       
-      // Enviamos los pedidos encontrados (o un array vacío si no hay) al cliente.
       res.status(200).json({ purchases });
     }catch(err){
       next(err);
