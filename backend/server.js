@@ -18,19 +18,12 @@ const {loggerMiddleware} = require("./middlewares/logger.js")
 const {notFoundHandler} = require("./middlewares/notFoundHandler.js");
 
 const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS
-  ? process.env.CORS_ALLOWED_ORIGINS.split(',')
-  : [];
+  
 
 // 2. Configura las opciones de CORS dinámicamente
 const corsOptions = {
     credentials: true,
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('No permitido por CORS'));
-        }
-    }
+    origin: allowedOrigins
 };
 
 // 3. Usa las opciones de CORS en tu aplicación
