@@ -7,9 +7,9 @@ import Carrito from './pages/carrito/Carrito.jsx';
 import DetalleProducto from './components/DetalleProducto/DetalleProducto.jsx';
 import { createGlobalStyle } from 'styled-components';
 import CrearProducto from './pages/createProduct/CreateProduct.jsx';
-import User from './pages/user/user.jsx'; 
+import User from './pages/user/User.jsx'; 
 import Navbar from './components/nav/Nav.jsx';
-import Purchases from './pages/Purchases/purchases.jsx';
+import Purchases from './pages/Purchases/Purchases.jsx';
 const GlobalStyle = createGlobalStyle`
 
 *, *::before, *::after {
