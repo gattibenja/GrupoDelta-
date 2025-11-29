@@ -12,6 +12,10 @@ export const BotonWrapper = styled.div`
   */
   margin-top: -50px; 
   margin-bottom: 120px;
+
+  @media (max-width: 768px) {
+        margin-top: 5px;
+    }
 `;
 
 export const Boton = styled.button`
