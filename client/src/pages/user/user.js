@@ -10,7 +10,7 @@ export const BotonWrapper = styled.div`
     y un espacio positivo abajo para separarlo del footer.
     Ajusta estos valores según tu preferencia.
   */
-  margin-top: -100px; 
+  margin-top: -50px; 
   margin-bottom: 120px;
 `;
 
