@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken")
 
-const authMiddleware = (req, res, next) => {
+const authMiddleware = (req, res, next) => { //middleware que verifica la validez del token enviado en
     const token = req.cookies.token;
     if(!token){
         return res.status(401).json({error: "No autorizado: se requiere token de acceso"})

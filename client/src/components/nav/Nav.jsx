@@ -5,10 +5,10 @@ import { CartContext } from '../../auth/CartContext.js';
 import { useContext, useState } from 'react'; // Importamos useState
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 const logo = `${BASE_URL}/imagenes/logo.svg`
-const carritoImg = `${BASE_URL}/imagenes/carritoDecompra.png`
+const carritoImg = `${BASE_URL}/imagenes/carrito.png`
 
 function Navbar(){
-    const { user, isAuthenticated, logout } = useContext(AuthContext)
+    const { user, isAuthenticated, logout, isAdmin } = useContext(AuthContext)
     const { cartCount } = useContext(CartContext)
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -27,9 +27,10 @@ function Navbar(){
                         <S.UserMenuContainer>
                         <S.UserNameButton>{"Mi perfil"}</S.UserNameButton>
                         <S.DropdownMenu>
-                            <S.DropdownUserName>{user?.user || 'Usuario'}</S.DropdownUserName>
+                            <S.DropdownUserName>Cuenta de {user?.user || 'Usuario'}</S.DropdownUserName>
                             <S.DropdownItem to="/purchases">Mis compras</S.DropdownItem>
-                            <S.DropdownItem to="/admin/crear-producto">Agregar Productos</S.DropdownItem>
+                            {isAdmin ? <S.DropdownItem to="/admin/crear-producto">Agregar Productos</S.DropdownItem>:null}
+                            {isAdmin ? <S.DropdownItem to="/admin/users">Usuarios</S.DropdownItem>:null}
                             <S.DropdownItem as="button" onClick={logout}>Salir</S.DropdownItem>
                         </S.DropdownMenu>
                         </S.UserMenuContainer>

@@ -18,6 +18,8 @@ export const HeroBanner = styled.div`
     height: auto; /* La altura se ajusta al contenido */
     padding: 60px 20px; /* Reduce el padding para móviles */
     text-align: center; /* Centra todo el texto */
+    margin-top: 60px;
+    margin-bottom: 60px;
   }
 `;
 

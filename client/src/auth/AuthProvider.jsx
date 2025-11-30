@@ -8,7 +8,7 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const navigate = useNavigate();
     const { addToast } = useToast();
-    
+    const [isAdmin, setIsAdmin]  = useState(false)
 
     useEffect(() => {
     // Al iniciar la app, preguntamos al backend si hay sesión activa
@@ -16,13 +16,15 @@ export const AuthProvider = ({children}) => {
       try {
         const res = await fetch(`${BASE_URL}/api/auth/me`, {
           method: 'GET',
-          credentials: 'include' // << muy importante para enviar la cookie
+          credentials: 'include' 
         });
         if (!res.ok) {
           setUser(null);
+          setIsAdmin(false);
         } else {
           const data = await res.json();
           setUser(data.user);
+          setIsAdmin(data.user.role === 'admin'); 
         }
       } catch (err) {
         setUser(null);
@@ -33,6 +35,7 @@ export const AuthProvider = ({children}) => {
   }, []);
 
     const isAuthenticated = Boolean(user);
+
 
     const login = async(userData) => {
         const response = await fetch(`${BASE_URL}/api/users/logIn`, {
@@ -51,7 +54,8 @@ export const AuthProvider = ({children}) => {
         addToast('¡Sesión iniciada con éxito!', 'success');
         const data = await response.json();
         setUser(data.user); // Usamos la respuesta del backend para establecer el usuario
-    }
+        setIsAdmin(data.user.role === 'admin')
+      }
 
     const logout = async() => {
         await fetch(`${BASE_URL}/api/users/logOut`, {
@@ -60,10 +64,12 @@ export const AuthProvider = ({children}) => {
         })
         navigate('/user/login')
         setUser(null);
+        setIsAdmin(false)
     }
     const value = {
         user,
         isAuthenticated,
+        isAdmin,
         login,
         logout,
     };

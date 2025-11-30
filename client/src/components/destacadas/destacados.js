@@ -8,8 +8,12 @@ export const Destacados = styled.section`
     width: 100%;
     gap: 20px;
     padding: 60px 20px;
-    border-top: 2px solid  #D4A437; 
+    
     background: linear-gradient(135deg, #F5E6D3 0%, #87A96B22 100%);
+
+     @media (max-width: 768px) {
+    border-top: 0px; 
+}
 `;
 
 

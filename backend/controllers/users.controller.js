@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken")
 const cookieParser = require('cookie-parser'); 
 
 exports.userSignUp = async (req, res, next) => {
-    const {username, email, password} = req.body
+    const {username, email, password, adminPassword} = req.body
     if(!username || !email || !password){
         return res.status(400).json({error: "Todos los campos son necesario"})
     }
@@ -23,12 +23,13 @@ exports.userSignUp = async (req, res, next) => {
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-
+        
         const newUser = new User({
             user: username,
             email,
-            password: hashedPassword
+            password: hashedPassword,
         });
+       
         const savedUser = await newUser.save()
 
         console.log("Usuario creado correctamente");
@@ -63,9 +64,13 @@ exports.userLogIn = async (req, res, next) => {
             return next(error)
         }
         const token = jwt.sign(
-            {id: user._id, user: user.user},
-            process.env.JWT_SECRET,
-            {expiresIn: '1h'}
+            {
+                id: user._id, 
+                user: user.user, 
+                role: user.role
+            },
+                process.env.JWT_SECRET,
+                {expiresIn: '1h'}
     );
 
     
@@ -84,7 +89,8 @@ exports.userLogIn = async (req, res, next) => {
         message: "Credenciales validadas correctamente",
         id: user._id,
         user: user.user,
-        email: user.email
+        email: user.email,
+        role: user.role
       }
     });
 
@@ -105,5 +111,51 @@ exports.logOut = async (req, res, next) => {
   });
 
   res.json({ message: "Logout exitoso" });
+
+}
+
+exports.getUsers = async (req, res, next) => {
+    try{
+        const users = await User.find({}).select('-password')
+        res.json({Usuarios: users})
+
+    }catch(err){
+        const error = {
+            message: "Error al obtener todos los usuarios: " + err.message,
+            status: 500
+        }
+        next(err)
+    }
+}
+
+exports.changeUserRole = async (req, res, next) => {
+    try{
+        const {id: targetUserId} = req.params
+        const {newRole} = req.body
+
+         if (!['user', 'admin'].includes(newRole)) {
+            return res.status(400).json({ error: "Rol inválido. Solo se permite 'user' o 'admin'." });
+        }
+        
+       const updatedUser = await User.findByIdAndUpdate(
+            targetUserId,
+            { role: newRole },
+            { new: true } //
+        ).select('-password'); 
+         if (!updatedUser) {
+            return res.status(404).json({ error: "Usuario no encontrado." });
+        }
+
+         res.status(200).json({
+            message: `Rol del usuario ${updatedUser.user} actualizado a ${newRole}`,
+            user: updatedUser
+        });
+    }catch(err){
+        const error = {
+            message: err.message,
+            status: 500
+        }
+        next(err)
+    }
 
 }

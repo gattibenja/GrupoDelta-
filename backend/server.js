@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/api/auth/me', async (req, res) => {
+app.get('/api/auth/me', async (req, res) => { // funcion que recuerda al front con un token existente que usuario se inicio sesion
   try {
     const token = req.cookies.token; 
     if (!token) {
@@ -53,7 +53,7 @@ app.get('/api/auth/me', async (req, res) => {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
-    res.json({ user: { id: user._id, user: user.user, email: user.email } });
+    res.json({ user: { id: user._id, user: user.user, email: user.email, role: user.role } });
   } catch (err) {
     res.status(401).json({ error: 'Token inválido o expirado' });
   }

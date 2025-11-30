@@ -10,6 +10,7 @@ import CrearProducto from './pages/createProduct/CreateProduct.jsx';
 import User from './pages/user/User.jsx'; 
 import Navbar from './components/nav/Nav.jsx';
 import Purchases from './pages/Purchases/Purchases.jsx';
+import UserManagement from './pages/usersManagement/Users.management.jsx';
 const GlobalStyle = createGlobalStyle`
 
 *, *::before, *::after {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/contacto" element={<Contacto />} /> 
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/admin/crear-producto" element={<CrearProducto />} />
+          <Route path="/admin/users" element={<UserManagement />} />
           <Route path="/purchases" element={<Purchases />} />
         </Routes>
     </>

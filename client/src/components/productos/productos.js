@@ -27,6 +27,7 @@ export const Title = styled.h1`
   font-family: Georgia, 'Times New Roman', serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-align: center;
 `;
 
 export const Grid = styled.div`

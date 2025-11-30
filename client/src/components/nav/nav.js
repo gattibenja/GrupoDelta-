@@ -164,7 +164,7 @@ export const DropdownMenu = styled.div`
   z-index: 10;
   border-radius: 5px;
   right: -50px; /* Un valor negativo lo mueve más a la derecha */
-  top: 40px; 
+  top: 30px; 
   /* Oculto por defecto y con una transición suave */
   opacity: 0;
   visibility: hidden;

@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import * as S from './formCrearUsuario.js'
-
+import * as S from './formCrearUsuario'
+import { useNavigate } from "react-router-dom";
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
 export default function FormCrearUsuarios() {
     const [error, setError] = useState("");
     const [exito, setExito] = useState(false);
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: {
             username: "",
             email: "",
-            password: ""
+            password: "",
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -42,9 +43,10 @@ export default function FormCrearUsuarios() {
                     const errorData = await response.json();
                     throw new Error(errorData.error.message || 'El registro del usuario falló');
                 }
-
+                
                 resetForm();
                 setExito(true);
+                navigate('/user/logIn');
 
             } catch (err) {
                 console.error(err.message);

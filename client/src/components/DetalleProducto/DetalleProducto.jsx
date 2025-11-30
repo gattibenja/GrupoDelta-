@@ -11,7 +11,7 @@ import { CartContext } from "../../auth/CartContext.js";
 
 export default function DetalleProducto() {
     const { id }  = useParams();
-    const { isAuthenticated} = useContext(AuthContext);
+    const { isAdmin} = useContext(AuthContext);
     const { addProduct } = useContext(CartContext);
     //const { addToast } = useToast();
     const navigate = useNavigate();
@@ -96,7 +96,7 @@ export default function DetalleProducto() {
                     <S.PrecioCarrito>
                         <S.Precio>${(producto.precio) ? producto.precio:"N/A"}</S.Precio>
                         <S.BotonAgregar onClick={() => addProduct(producto)}>Agregar al Carrito</S.BotonAgregar>
-                        {isAuthenticated && (
+                        {isAdmin && (
                             <S.BotonAgregar onClick={eliminar}>Eliminar producto</S.BotonAgregar>
                         )}
                     </S.PrecioCarrito>
