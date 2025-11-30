@@ -38,7 +38,6 @@ function Users(){
             return res.json();
         })
         .then(data => {
-            // Actualizar el estado local para reflejar el cambio sin recargar
             setUsers(currentUsers => 
                 currentUsers.map(user => user._id === userId ? data.user : user)
             );

@@ -27,7 +27,7 @@ function User(){
                 </>
               ) : (
                 <>
-                  <FormCrearUsuarios />
+                  <FormCrearUsuarios onRegistrationSuccess={() => setIsLogin(true)} />
                   <S.BotonWrapper>
                     <S.Boton onClick={() => setIsLogin(true)}>¿Ya tienes cuenta? Inicia sesión</S.Boton>
                   </S.BotonWrapper>

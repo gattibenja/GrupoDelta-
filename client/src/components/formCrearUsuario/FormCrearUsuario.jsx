@@ -2,14 +2,12 @@ import { useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import * as S from './formCrearUsuario'
-import { useNavigate } from "react-router-dom";
 const BASE_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
-export default function FormCrearUsuarios() {
+export default function FormCrearUsuarios({ onRegistrationSuccess }) { // 1. Aceptamos la nueva prop
     const [error, setError] = useState("");
     const [exito, setExito] = useState(false);
-    const navigate = useNavigate()
-
+    
     const formik = useFormik({
         initialValues: {
             username: "",
@@ -46,7 +44,11 @@ export default function FormCrearUsuarios() {
                 
                 resetForm();
                 setExito(true);
-                navigate('/user/logIn');
+
+                // 2. Llamamos a la función del padre después de un breve momento para que el usuario vea el mensaje de éxito.
+                if (onRegistrationSuccess) {
+                    setTimeout(() => onRegistrationSuccess(), 2000); // Espera 2 segundos
+                }
 
             } catch (err) {
                 console.error(err.message);
