@@ -1,7 +1,6 @@
 //import { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import * as S from './users.management.js'
-import Users from '../../components/users/users.jsx';
+import Users from '../../components/users/Users.jsx';
 const GlobalStyle = createGlobalStyle`
 
 body{
